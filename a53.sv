@@ -13,18 +13,18 @@ module assignment();
   always #20 clk = ~clk;
 
   task gen_stim();
-    @posedge(clk);
+    @(posedge clk)
     en = 1;
     wr = 1;
     addr = 'd12;
-    @posedge(clk);
+    @(posedge clk)
     addr = 'd14;
-    @posedge(clk);
+    @(posedge clk)
     wr = 0;
     addr = 'd23;
-    @posedge(clk);
+    @(posedge clk)
     addr = 'd48;
-    @posedge(clk);
+    @(posedge clk)
     en = 0;
     addr = 'd56;
   endtask
@@ -32,5 +32,12 @@ module assignment();
   initial begin
     gen_stim();
   end
+  
+  initial
+    begin
+      $dumpfile("wave.vcd");
+      $dumpvars;
+      #300 $finish;
+    end
 
 endmodule

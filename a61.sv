@@ -11,8 +11,7 @@ endclass
  
 module tb;
   generator g;
-  int i = 0;
-  
+  int i = 0;  
   initial begin
    g = new();
     
@@ -25,4 +24,10 @@ module tb;
     
   end
 
+  initial begin
+    $dumpfile("dump.vcd");
+    $dumpvars;
+    #450 $finish;
+  end
+  
 endmodule

@@ -19,7 +19,6 @@ class generator;
 endclass
  
  
-//////////////////Add constraint and TB top code
 
 module tb;
   generator g;
