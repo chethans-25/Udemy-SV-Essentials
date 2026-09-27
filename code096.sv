@@ -1,3 +1,5 @@
+// example of class inside class and calling method of inner class using outer class object.
+
 class first;
   
   int data = 34;

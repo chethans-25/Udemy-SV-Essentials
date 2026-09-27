@@ -1,28 +1,72 @@
 Verification Series part 1
 
+**********Section 2: Fundamentals: procedural constructs ************
 
 Signals: Global signals,  data signals,  control signals. 
 
 Initial block
-Used to initialize global signals
-Used to call system tasks and functions, etc
+Execution:Starts at simulation time 0, executes once, and never repeats.
+
+Purpose: Commonly used in testbenches to:
+* Initialize signals
+* Apply reset sequences
+* Generate stimulus
+* Display outputs or terminate simulation
+* call system tasks and functions, etc
+
+Synthesizability:     Initial blocks are not synthesizable.
+
+Sequential execution: Statements inside an initial block are executed sequentially, one after the other.
+
+Delay control:        Delay control can be used to specify the time at which a statement is executed.
+
+
 
 Always block
+Execution: Runs continuously throughout simulation, starting at time 0.
+
+Purpose: Describes behavior that should repeat or react to changes in signals.
+
+Sensitivity: Executes whenever signals in its sensitivity list change.
+
+Synthesizability: Unlike initial, always blocks can be synthesizable, depending on how they are written.
+
+Types:
+
+always_comb → for combinational logic
+
+always_ff → for sequential logic (flip-flops)
+
+always_latch → for latches
+
 Sensitivity list is not mandatory in test bench
-If an always block is used without sensitivity list, make Sure to use finish call.
+eg: always #5 clk = ~clk;
+If an always block is used without sensitivity list, make sure to use finish call.
 
 Timescale
 Time unit and time precision
 Decides how many decimal point can be used in time
+syntax: `timescale <time_unit>/<time_precision>
+time_unit → the base unit for delays (e.g., 1ns, 10ps, 1us).
+time_precision → the resolution or rounding of simulation time (e.g., 1ps, 100fs).
+default timescale is 1ns/1ps if not specified.
+scope of timescale: Timescale directive is local to the file in which it is declared. It does not affect other files unless explicitly specified.
+
+If presision is not proper, #5.6 will be rounded to #6.0, #5.4 will be rounded to #5.0, #5.5 will be rounded to #6.0
+
 
 Clock Generation 
-Frequency, phase, duty cycle, period, half period
+Frequency, phase, duty cycle, period, half period, t_on, t_off
 
-Variable types 
-Reg, wire,  logic
 
+**********Section 3: Understanding SV Data Types ************
+
+Data types 
+Hardware data types: reg, wire, logic
+
+Variable data types: 
 Fixed - 2 state, 4 state
-floating - real 
+floating - real (64 bit double precision), shortreal (32 bit single precision)
 
 2 state
 Signed- byte, short int, int, long int
@@ -34,23 +78,27 @@ Signed - integer
 
 They can be explicitly converted to signed or unsigned.
 
+Simulation data types:
+time
+realtime
+
+
 Arrays
 Fixed array
 Eg
 Bit arr[8];
-Bit arr[] = {1,2};
 
 $size(arr);
 
 Unique value  initialization 
 
-Arr[] = '{1,2,3,4};
+Arr[] = '{1,2,3,4}; //dynamic unique value initialization
 
 Repetitive values initialization
-Arr[] = '{6{1}};
+Arr[] = '{6{1}}; //dynamic repetitive value initialization
 
 Default value initialization
-Arr[]= '{default:0};
+Arr[]= '{default:0}; //dynamic default value initialization
 
 Not initialized arrays
 Takes default value based on data type
@@ -96,6 +144,8 @@ J = arr.pop_front();      //1,10,2,3,5
 J = arr.pop_back(); // 1,10,2,3
 
 arr.delete(1);   // 1,2,3
+
+
 
 
 Verification Plan

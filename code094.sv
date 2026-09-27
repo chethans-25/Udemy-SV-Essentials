@@ -1,3 +1,7 @@
+
+// class methods
+
+// display method is used to display the values of the class members. It is a task and can be called using the object of the class.
 class first;
   
   int data1;

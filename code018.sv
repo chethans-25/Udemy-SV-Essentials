@@ -1,5 +1,6 @@
 `timescale 1ns / 1ps
- 
+// Multiple clock with same starting point
+
 module tb();
  
   

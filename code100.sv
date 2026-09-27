@@ -1,3 +1,5 @@
+// Copying data from one object to another
+
 class first;
   
   int data;

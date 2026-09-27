@@ -1,3 +1,7 @@
+// Scope of Variables in class and task/function
+
+// A variable declared inside a task/function is local to that block, while a variable declared in a class belongs to that class/object and is accessed with this if needed.
+
 class first;
   
  local int data = 34;

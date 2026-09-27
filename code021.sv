@@ -1,5 +1,6 @@
 `timescale 1ns / 1ps   //10^3 -> 3
- 
+// Clock generation with decimal point period; importance of timeprecision
+
 module tb();
  
   

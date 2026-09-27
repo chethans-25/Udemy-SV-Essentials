@@ -1,14 +1,10 @@
 module tb;
-  
-  
-  
   ///default direction : input
   /*
   task add (input bit [3:0] a, input bit [3:0] b, output bit [4:0] y);
-   y = a + b;
+    y = a + b;
   endtask
   */
-  
   
   bit [3:0] a,b;
   bit [4:0] y;
@@ -18,8 +14,8 @@ module tb;
   always #5 clk = ~clk;  ///20 ns --> 50 Mhz
   
   task add ();
-   y = a + b;
-   $display("a : %0d and b : %0d and y : %0d",a,b,y);
+    y = a + b;
+    $display("a : %0d and b : %0d and y : %0d",a,b,y);
   endtask
   
   task stim_a_b();
@@ -45,23 +41,16 @@ module tb;
     add();
   endtask
   
-  
-  
   initial begin
     #110;
     $finish();
   end
   
-  
-  
   initial begin
-   // stim_a_b();
+    // stim_a_b();
     for(int i = 0; i< 11 ; i++) begin
       stim_clk();
-    end
-  
+    end  
   end
-  
-  
   
 endmodule
